@@ -11,4 +11,5 @@ int main()
     if(a < 0)
         printf("\nNegative number!\n");
     printf("\nLet's make the program better...\n");
+    return 0;
 }
