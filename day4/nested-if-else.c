@@ -17,12 +17,12 @@ int main()
         printf("\n\tNegative number!\n");
     else
     {
-        if (a < 0)
+        if (a > 0)
             printf("\n\tPositive number!");
         else
             printf("\n\tNumber is zero!");
     }
-    printf("\nLet's make the program better...\n\n");
+    printf("\n\nLet's make the program better...\n\n");
 
     return 0;
 }
