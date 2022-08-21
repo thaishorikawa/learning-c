@@ -8,19 +8,19 @@ int main()
     positive = 0;
     negative = 0;
 
-    printf("Enter the first number: ");
+    printf("Enter first number: ");
     scanf("%d", &one);
 
-    printf("Enter the second number: ");
+    printf("Enter second number: ");
     scanf("%d", &two);
 
-    printf("Enter the third number: ");
+    printf("Enter third number: ");
     scanf("%d", &three);
 
-    printf("Enter the fourth number: ");
+    printf("Enter fourth number: ");
     scanf("%d", &four);
 
-    printf("Enter the fifth number: ");
+    printf("Enter fifth number: ");
     scanf("%d", &five);
 
     if (one < 0)
