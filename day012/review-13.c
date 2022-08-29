@@ -21,14 +21,19 @@ int main()
         scanf("%f", &salary);
 
         totalSalaries += salary;
+
+        if (i == 1)
+            lowerSalary = salary;
+
         if (lowerSalary > salary)
             lowerSalary = salary;
+
         if (higherSalary < salary)
             higherSalary = salary;
     }
     printf("Average salary R$%.2f\n", totalSalaries / quantity);
     printf("Higher salary R$%.2f\n", higherSalary);
     printf("Lower salary R$%.2f\n\n", lowerSalary);
-    
+
     return 0;
 }
