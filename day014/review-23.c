@@ -11,4 +11,5 @@ int main()
             printf("I = %d\tJ = %d\n", i, j);
         printf("\n");
     }
+    return 0;
 }
