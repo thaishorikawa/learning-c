@@ -18,4 +18,5 @@ int main()
     }
     printf("It takes %d years!\n\n", year);
 
+    return 0;
 }

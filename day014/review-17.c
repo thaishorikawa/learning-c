@@ -34,4 +34,6 @@ int main()
     printf("Average salary R$%.2f\n", averageSalary / x);
     printf("Lower age: %d\nHigher age: %d\n", lowerAge, higherAge);
     printf("Number of women with salary up to R$2000,00: %d\n\n", womenQt);
+
+    return 0;
 }
