@@ -15,6 +15,7 @@ int main()
     printf("\n");
     for (i = 0; i < 10; i++)
         printf("%d ", number[i]);
+    
     printf("\n\n");
 
     return 0;
