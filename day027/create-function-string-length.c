@@ -17,7 +17,7 @@ int main()
 {
     char arr[20] = {"Hey. Good morning!"};
 
-    printf("strlen: %d\n", strlen(arr));
+    printf("strlen: %ld\n", strlen(arr));
     printf("myStrLen: %d\n", myStrLen(arr));
 
     return 0;
