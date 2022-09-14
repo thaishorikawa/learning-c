@@ -19,12 +19,12 @@ void display(int m[][5])
     }
 }
 
-int sumLine(int x[][5], int l)
+int sumRow(int x[][5], int r)
 {
     int c, sum = 0;
 
     for (c = 0; c < size; c++)
-        sum += x[l][c];
+        sum += x[r][c];
     return sum;
 }
 
@@ -47,7 +47,7 @@ int main()
     display(mat);
 
     for (i = 0; i < size; i++)
-        printf("\nSum of line %d: %d\n", i, sumLine(mat, i));
+        printf("\nSum of row %d: %d\n", i, sumRow(mat, i));
    
     return 0;
 }
