@@ -27,7 +27,7 @@ long long int fiboI(int n)
             return b;
         else
         {
-            while(i < n)
+            while (i < n)
             {
                 c = a + b;
                 a = b;
@@ -43,7 +43,7 @@ int main()
 {
     int n = 50;
     time_t tStart, tEnd;
-    
+
     tStart = time(NULL);
     printf("Iterative Fibonacci: %lld\n", fiboI(n));
     tEnd = time(NULL);
