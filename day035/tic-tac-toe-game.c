@@ -110,6 +110,32 @@ void readCoordinates(char j)
     game[row][column] = j;
 }
 
+void play()
+{
+    int player = 1, winnerX = 0, winnerO = 0;
+    char player1 = 'X', player2 = 'O';
+
+    display();
+    if (player == 1)
+    {
+        readCoordinates(player1);
+        player++;
+        winnerX += wonInRows(player1);
+        winnerX += wonInColumns(player1);
+        winnerX += wonInDiagonal(player1);
+        winnerX += wonInDiagonalSec(player1);
+    }
+    else
+    {
+        readCoordinates(player2);
+        player = 1;
+        winnerO += wonInRows(player2);
+        winnerO += wonInColumns(player2);
+        winnerO += wonInDiagonal(player2);
+        winnerO += wonInDiagonalSec(player2);
+    }
+}
+
 int main()
 {
     initializeMatrix();
