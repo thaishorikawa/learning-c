@@ -150,12 +150,29 @@ void play()
             winnerO += wonInDiagonalSec(player2);
         }
     } while (winnerX == 0 && winnerO == 0 && quantEmpty() > 0);
+
+    display();
+
+    if (winnerO == 1)
+        printf("\nCongratulations player 2. You won!!!\n");
+    else if (winnerX == 1)
+        printf("\nCongratulations player 1. You won!!!\n");
+    else
+        printf("\nToo bad! You lost!!!\n");
 }
 
 int main()
 {
-    initializeMatrix();
-    display();
+    int option;
+
+    do
+    {
+        initializeMatrix();
+        play();
+
+        printf("\nEnter 1 to play again: ");
+        scanf("%d", &option);
+    } while (option == 1);
 
     return 0;
 }
