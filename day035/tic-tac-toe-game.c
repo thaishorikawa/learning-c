@@ -95,7 +95,7 @@ int isValid(int r, int c)
         return 0;
 }
 
-void readCoordinates()
+void readCoordinates(char j)
 {
     int row, column;
 
@@ -107,6 +107,7 @@ void readCoordinates()
         printf("Invalid coordinates! Enter another row and column: ");
         scanf("%d%d", &row, &column);
     }
+    game[row][column] = j;
 }
 
 int main()
