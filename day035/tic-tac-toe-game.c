@@ -110,30 +110,46 @@ void readCoordinates(char j)
     game[row][column] = j;
 }
 
+int quantEmpty()
+{
+    int quantity = 0;
+
+    for (r = 0; r < 3; r++)
+    {
+        for (c = 0; c < 3; c++)
+            if (game[r][c] == ' ')
+                quantity++;
+    }
+    return quantity;
+}
+
 void play()
 {
     int player = 1, winnerX = 0, winnerO = 0;
     char player1 = 'X', player2 = 'O';
 
-    display();
-    if (player == 1)
+    do
     {
-        readCoordinates(player1);
-        player++;
-        winnerX += wonInRows(player1);
-        winnerX += wonInColumns(player1);
-        winnerX += wonInDiagonal(player1);
-        winnerX += wonInDiagonalSec(player1);
-    }
-    else
-    {
-        readCoordinates(player2);
-        player = 1;
-        winnerO += wonInRows(player2);
-        winnerO += wonInColumns(player2);
-        winnerO += wonInDiagonal(player2);
-        winnerO += wonInDiagonalSec(player2);
-    }
+        display();
+        if (player == 1)
+        {
+            readCoordinates(player1);
+            player++;
+            winnerX += wonInRows(player1);
+            winnerX += wonInColumns(player1);
+            winnerX += wonInDiagonal(player1);
+            winnerX += wonInDiagonalSec(player1);
+        }
+        else
+        {
+            readCoordinates(player2);
+            player = 1;
+            winnerO += wonInRows(player2);
+            winnerO += wonInColumns(player2);
+            winnerO += wonInDiagonal(player2);
+            winnerO += wonInDiagonalSec(player2);
+        }
+    } while (winnerX == 0 && winnerO == 0 && quantEmpty() > 0);
 }
 
 int main()
