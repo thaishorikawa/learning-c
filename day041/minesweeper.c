@@ -98,6 +98,37 @@ void display()
     }
 }
 
+void openCell(int r, int c)
+{
+    if (isValidCoordinates(r, c) == 1 && game[r][c].isOpen == 0)
+    {
+        game[r][c].isOpen = 1;
+        if (game[r][c].adjacent == 0)
+        {
+            openCell(r - 1, c);
+            openCell(r + 1, c);
+            openCell(r, c + 1);
+            openCell(r, c - 1);
+        }
+    }
+}
+
+void play()
+{
+    int row, column;
+
+    do
+    {
+        printf("\nEnter the coordinates of row and column: ");
+        scanf("%d%d", &row, &column);
+
+        if (isValidCoordinates(row, column) == 0)
+            printf("\nInvalid coordinate!");
+    } while (isValidCoordinates(row, column) == 0 || game[row][column].isOpen == 1);
+
+    openCell(row, column);
+}
+
 int main()
 {
     startGame();
