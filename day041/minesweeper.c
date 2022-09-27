@@ -27,7 +27,7 @@ void startGame()
 
 void drawMines(int n)
 {
-    int i;
+    int i, mines = 0;
     srand(time(NULL));
     for (i = 1; i <= n; i++)
     {
@@ -88,7 +88,7 @@ void display()
                 if (game[r][c].isMine)
                     printf(" * ");
                 else
-                    printf("%d", game[r][c].adjacent);
+                    printf(" %d ", game[r][c].adjacent);
             }
             else
                 printf("   ");
@@ -140,8 +140,9 @@ void play()
             printf("\nEnter the coordinates of row and column: ");
             scanf("%d%d", &row, &column);
 
-            if (isValidCoordinates(row, column) == 0)
-                printf("\nInvalid coordinate!");
+            if (isValidCoordinates(row, column) == 0 || game[row][column].isOpen == 1)
+                ;
+            printf("\nInvalid coordinate or it's already open!");
         } while (isValidCoordinates(row, column) == 0 || game[row][column].isOpen == 1);
 
         openCell(row, column);
@@ -151,6 +152,8 @@ void play()
         printf("\n\tYou lost! Try again.\n");
     else
         printf("\n\tCONGRATULATIONS!! YOU WON!\n");
+
+    display();
 }
 
 int main()
