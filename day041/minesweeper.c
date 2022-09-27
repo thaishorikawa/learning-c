@@ -4,7 +4,7 @@
 
 typedef struct
 {
-    int isBomb;
+    int isMine;
     int isOpen;
     int adjacent;
 } Cell;
@@ -18,14 +18,14 @@ void startGame()
     {
         for (c = 0; c < size; c++)
         {
-            game[r][c].isBomb = 0;
+            game[r][c].isMine = 0;
             game[r][c].isOpen = 0;
             game[r][c].adjacent = 0;
         }
     }
 }
 
-void drawBombs(int n)
+void drawMines(int n)
 {
     int i;
     srand(time(NULL));
@@ -33,8 +33,8 @@ void drawBombs(int n)
     {
         r = rand() % size;
         c = rand() % size;
-        if (game[r][c].isBomb == 0)
-            game[r][c].isBomb = 1;
+        if (game[r][c].isMine == 0)
+            game[r][c].isMine = 1;
         else
             i--;
     }
@@ -48,35 +48,63 @@ int isValidCoordinates(int r, int c)
         return 0;
 }
 
-int quantAdjacentBombs(int r, int c)
+int quantAdjacentMines(int r, int c)
 {
     int quantity = 0;
 
-    if (isValidCoordinates(r - 1, c) && game[r - 1][c].isBomb)
+    if (isValidCoordinates(r - 1, c) && game[r - 1][c].isMine)
         quantity++;
-    if (isValidCoordinates(r + 1, c) && game[r + 1][c].isBomb)
+    if (isValidCoordinates(r + 1, c) && game[r + 1][c].isMine)
         quantity++;
-    if (isValidCoordinates(r, c + 1) && game[r][c + 1].isBomb)
+    if (isValidCoordinates(r, c + 1) && game[r][c + 1].isMine)
         quantity++;
-    if (isValidCoordinates(r, c - 1) && game[r][c - 1].isBomb)
+    if (isValidCoordinates(r, c - 1) && game[r][c - 1].isMine)
         quantity++;
     return quantity;
 }
 
-void countingBombs()
+void countingMines()
 {
     for (r = 0; r < size; r++)
     {
         for (c = 0; c < size; c++)
-            game[r][c].adjacent = quantAdjacentBombs(r, c);
+            game[r][c].adjacent = quantAdjacentMines(r, c);
+    }
+}
+
+void display()
+{
+    printf("\n\n\t    ");
+    for (r = 0; r < size; r++)
+        printf(" %d  ", r);
+    printf("\n\t   -----------------------------------------\n");
+    for (r = 0; r < size; r++)
+    {
+        printf("\t%d  |", r);
+        for (c = 0; c < size; c++)
+        {
+            if (game[r][c].isOpen)
+            {
+                if (game[r][c].isMine)
+                    printf(" * ");
+                else
+                    printf("%d", game[r][c].adjacent);
+            }
+            else
+                printf("   ");
+            printf("|");
+        }
+        printf("\n\t   -----------------------------------------\n");
     }
 }
 
 int main()
 {
     startGame();
-    drawBombs(10);
-    countingBombs();
+    drawMines(10);
+    countingMines();
+    printf("\n\t\t\tMINESWEEPER\n");
+    display();
 
     return 0;
 }
