@@ -113,29 +113,61 @@ void openCell(int r, int c)
     }
 }
 
+int winner()
+{
+    int quantity = 0;
+
+    for (r = 0; r < size; r++)
+    {
+        for (c = 0; c < size; c++)
+        {
+            if (game[r][c].isOpen == 0 && game[r][c].isMine == 0)
+                quantity++;
+        }
+    }
+    return quantity;
+}
+
 void play()
 {
     int row, column;
 
     do
     {
-        printf("\nEnter the coordinates of row and column: ");
-        scanf("%d%d", &row, &column);
+        display();
+        do
+        {
+            printf("\nEnter the coordinates of row and column: ");
+            scanf("%d%d", &row, &column);
 
-        if (isValidCoordinates(row, column) == 0)
-            printf("\nInvalid coordinate!");
-    } while (isValidCoordinates(row, column) == 0 || game[row][column].isOpen == 1);
+            if (isValidCoordinates(row, column) == 0)
+                printf("\nInvalid coordinate!");
+        } while (isValidCoordinates(row, column) == 0 || game[row][column].isOpen == 1);
 
-    openCell(row, column);
+        openCell(row, column);
+    } while (winner() != 0 && game[row][column].isMine == 0);
+
+    if (game[row][column].isMine == 1)
+        printf("\n\tYou lost! Try again.\n");
+    else
+        printf("\n\tCONGRATULATIONS!! YOU WON!\n");
 }
 
 int main()
 {
-    startGame();
-    drawMines(10);
-    countingMines();
-    printf("\n\t\t\tMINESWEEPER\n");
-    display();
+    int option;
+
+    do
+    {
+        startGame();
+        drawMines(10);
+        countingMines();
+        printf("\n\t\t\tMINESWEEPER\n");
+        play();
+
+        printf("Enter 1 to play again: ");
+        scanf("%d", &option);
+    } while (option == 1);
 
     return 0;
 }
