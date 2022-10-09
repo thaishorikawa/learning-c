@@ -67,9 +67,30 @@ void editContact(Contact **c, int quant)
         printf("\n\tInvalid code!\n");
 }
 
+void save(Contact **c, int quant, char file1[])
+{
+    FILE *file = fopen(file1, "w");
+    int i;
+
+    if (file)
+    {
+        fprintf(file, "%d\n", quant);
+        for (i = 0; i < quant; i++)
+        {
+            fputs(c[i]->name, file);
+            fputc('\n', file);
+            fprintf(file, "%d %d %d\n", c[i]->day, c[i]->month, c[i]->year);
+        }
+        fclose(file);
+    }
+    else
+        printf("\n\tIt was not possible to open/create a file!\n");
+}
+
 int main()
 {
     Contact *calendar[50];
+    char file[] = {"birthday-calendar.txt"};
     int option, size = 50, quant = 0;
 
     do
@@ -90,6 +111,7 @@ int main()
             display(calendar, quant);
             break;
         case 4:
+            save(calendar, quant, file);
             break;
         case 5:
             break;
