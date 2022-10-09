@@ -37,6 +37,7 @@ int registerContact(Contact **c, int quant, int size)
     else
     {
         printf("\n\tIt is not possible to create a new register. Array is full!\n");
+        return 0;
     }
 }
 
@@ -69,16 +70,34 @@ void editContact(Contact **c, int quant)
 int main()
 {
     Contact *calendar[50];
-    int size = 50, quant = 0;
+    int option, size = 50, quant = 0;
 
-    display(calendar, quant);
-    quant += registerContact(calendar, quant, size);
-    printf("\nquant: %d\n", quant);
+    do
+    {
+        printf("\n\t0 - Exit\n\t1 - Register\n\t2 - Edit\n\t3 - Display\n\t4 - Save\n\t5 - Read file\n");
+        scanf("%d", &option);
+        getchar();
 
-    display(calendar, quant);
-    quant += registerContact(calendar, quant, size);
-    printf("\nquant: %d\n", quant);
-    display(calendar, quant);
+        switch (option)
+        {
+        case 1:
+            quant += registerContact(calendar, quant, size);
+            break;
+        case 2:
+            editContact(calendar, quant);
+            break;
+        case 3:
+            display(calendar, quant);
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        default:
+            if (option != 0)
+                printf("Invalid option!\n");
+        }
+    } while (option != 0);
 
     return 0;
 }
