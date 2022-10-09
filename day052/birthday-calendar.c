@@ -40,6 +40,32 @@ int registerContact(Contact **c, int quant, int size)
     }
 }
 
+void editContact(Contact **c, int quant)
+{
+    int id;
+
+    display(c, quant);
+
+    printf("\n\tEnter the code of the contact you want to edit: \n");
+    scanf("%d", &id);
+    getchar();
+    id--;
+
+    if (id >= 0 && id < quant)
+    {
+        Contact *new = malloc(sizeof(Contact));
+
+        printf("\nContact name: ");
+        scanf("%50[^\n]", new->name);
+        printf("\nContact birthday date dd mm yyyy: ");
+        scanf("%d%d%d", &new->day, &new->month, &new->year);
+        getchar();
+        c[id] = new;
+    }
+    else
+        printf("\n\tInvalid code!\n");
+}
+
 int main()
 {
     Contact *calendar[50];
