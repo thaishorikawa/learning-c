@@ -87,6 +87,29 @@ void save(Contact **c, int quant, char file1[])
         printf("\n\tIt was not possible to open/create a file!\n");
 }
 
+int read(Contact **c, char file1[])
+{
+    FILE *file = fopen(file1, "r");
+    int quant = 0, i;
+    Contact *new = malloc(sizeof(Contact));
+
+    if (file)
+    {
+        fscanf(file, "%d\n", &quant);
+        for (i = 0; i < quant; i++)
+        {
+            fscanf(file, "%50[^\n]", new->name);
+            fscanf(file, "%d %d %d\n", &new->day, &new->month, &new->year);
+            c[i] = new;
+            new = malloc(sizeof(Contact));
+        }
+        fclose(file);
+    }
+    else
+        printf("\n\tIt was not possible to open/create the file!\n");
+    return quant;
+}
+
 int main()
 {
     Contact *calendar[50];
@@ -114,6 +137,7 @@ int main()
             save(calendar, quant, file);
             break;
         case 5:
+            quant = read(calendar, file);
             break;
         default:
             if (option != 0)
