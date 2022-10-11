@@ -110,6 +110,42 @@ int read(Contact **c, char file1[])
     return quant;
 }
 
+void saveB(char file1[], Contact **c, int quant)
+{
+    FILE *file = fopen(file1, "wb");
+    int i;
+
+    if (file)
+    {
+        for (i = 0; i < quant; i++)
+            fwrite(c[i], sizeof(Contact), 1, file);
+        fclose(file);
+    }
+    else
+        printf("\nError to open file!\n");
+}
+
+int readB(char file1[], Contact **c)
+{
+    int quant = 0;
+    Contact *new = malloc(sizeof(Contact));
+    FILE *file = fopen(file1, "rb");
+
+    if (file)
+    {
+        while (fread(new, sizeof(Contact), 1, file))
+        {
+            c[quant] = new;
+            quant++;
+            new = malloc(sizeof(Contact));
+        }
+        fclose(file);
+    }
+    else
+        printf("\nError to open file!\n");
+    return quant;
+}
+
 int main()
 {
     Contact *calendar[50];
@@ -141,8 +177,10 @@ int main()
             quant = read(calendar, file1);
             break;
         case 6:
+            saveB(file2, calendar, quant);
             break;
         case 7:
+            quant = readB(file2, calendar);
             break;
         default:
             if (option != 0)
