@@ -15,7 +15,7 @@ void write(char file1[])
     if (file)
     {
         printf("Name and birth date dd mm yyyy: ");
-        scanf("%49[^\n]%d%d%d", c.name, &c.month, &c.month, &c.year);
+        scanf("%49[^\n]%d%d%d", c.name, &c.day, &c.month, &c.year);
         fwrite(&c, sizeof(Contact), 1, file);
         fclose(file);
     }
