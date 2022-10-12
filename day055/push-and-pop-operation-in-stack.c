@@ -48,9 +48,23 @@ No* stack(No *top)
     return NULL;
 }
 
+No* unstack(No **top)
+{
+    if (*top != NULL)
+    {
+        No *remove = *top;
+        *top = remove->next;
+        return remove;
+    }
+    else
+        printf("\nEmpty stack!\n");
+    return NULL;
+}
+
+
 int main()
 {
-    No *top = NULL;
+    No *remove, *top = NULL;
     int option;
 
     do
@@ -65,7 +79,14 @@ int main()
             top = stack(top);
             break;
         case 2:
-
+            remove = unstack(&top);
+            if (remove)
+            {
+                printf("\nElement was successfully removed!\n");
+                display_person(remove->p);
+            }
+            else
+                printf("\nNo need to remove.\n");
             break;
         case 3:
 
