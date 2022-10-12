@@ -61,6 +61,16 @@ No* unstack(No **top)
     return NULL;
 }
 
+void display_stack(No *top)
+{
+    printf("\n------------ STACK ------------\n");
+    while (top)
+    {
+        display_person(top->p);
+        top = top->next;
+    }
+    printf("\n------------ END OF THE STACK ------------\n");
+}
 
 int main()
 {
@@ -89,11 +99,13 @@ int main()
                 printf("\nNo need to remove.\n");
             break;
         case 3:
-
+            display_stack(top);
             break;
         default:
             if (option != 0)
                 printf("\nInvalid option!\n");
         }
     } while (option != 0);
+
+    return 0;
 }
